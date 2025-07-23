@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+    <!-- Author: Álvaro Sanz García -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Animate - Web Graphics and Animation</title>
+
+    <link href="css/general_styles.css" rel="stylesheet" />
+    <link href="css/animate_styles.css" rel="stylesheet" />
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="scripts/animate30.js"></script>
+    <script>
+        var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+        function init() {
+            canvas = document.getElementById("canvas");
+            anim_container = document.getElementById("animation_container");
+            dom_overlay_container = document.getElementById("dom_overlay_container");
+            var comp = AdobeAn.getComposition("E191522D9A13554183AC8CA48C935F68");
+            var lib = comp.getLibrary();
+            createjs.MotionGuidePlugin.install();
+            var loader = new createjs.LoadQueue(false);
+            loader.installPlugin(createjs.Sound);
+            loader.addEventListener("fileload", function (evt) { handleFileLoad(evt, comp) });
+            loader.addEventListener("complete", function (evt) { handleComplete(evt, comp) });
+            var lib = comp.getLibrary();
+            loader.loadManifest(lib.properties.manifest);
+        }
+        function handleFileLoad(evt, comp) {
+            var images = comp.getImages();
+            if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }
+        }
+        function handleComplete(evt, comp) {
+            //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+            var lib = comp.getLibrary();
+            var ss = comp.getSpriteSheet();
+            var queue = evt.target;
+            var ssMetadata = lib.ssMetadata;
+            for (i = 0; i < ssMetadata.length; i++) {
+                ss[ssMetadata[i].name] = new createjs.SpriteSheet({ "images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames })
+            }
+            exportRoot = new lib.animate30();
+            stage = new lib.Stage(canvas);
+            stage.enableMouseOver();
+            //Registers the "tick" event listener.
+            fnStartAnimation = function () {
+                stage.addChild(exportRoot);
+                createjs.Ticker.framerate = lib.properties.fps;
+                createjs.Ticker.addEventListener("tick", stage);
+                createjs.Ticker.addEventListener("tick", AdobeAn.handleSoundStreamOnTick);
+            }
+            //Code to support hidpi screens and responsive scaling.
+            AdobeAn.makeResponsive(false, 'both', false, 1, [canvas, anim_container, dom_overlay_container]);
+            AdobeAn.compositionLoaded(lib.properties.id);
+            fnStartAnimation();
+        }
+        function playSound(id, loop, offset) {
+            return createjs.Sound.play(id, { 'interrupt': createjs.Sound.INTERRUPT_EARLY, 'loop': loop, 'offset': offset });
+        }
+    </script>
+</head>
+
+<body onload="init();" style="margin:0px;">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="JQuery.html">jQuery</a></li>
+                <li><a href="Photoshop.html">Photoshop</a></li>
+                <li><a href="Illustrator.html">Illustrator</a></li>
+                <li><a href="Animate.html" id="currentPage">Animate</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div id="text_container">
+        <h1>Adobe Animate: Interactive Motion Design</h1>
+        <p>
+            Adobe Animate is a powerful animation software that enables users to create
+            <strong>keyframes</strong>—snapshots of an object's properties at specific
+            points in time—and apply <strong>tweening</strong> to generate smooth transitions
+            between them. Keyframes define significant changes in an animation, while Animate
+            automatically fills in the in-between frames (tweens) to create the illusion of
+            movement.<br /><br />
+
+            The first design is an interactive animation that responds to user
+            clicks using JavaScript. It was built using an <strong>HTML5 Canvas document</strong>,
+            which natively supports rich and dynamic HTML5 content. As Adobe describes:
+            “You can use the traditional Animate timeline, workspace, and tools to create content,
+            but produce HTML5 output.” To create the animation, I first used <strong>Photoshop</strong>
+            to separate the butterfly into distinct parts before importing them into <strong>Adobe 
+            Animate</strong>. Each part was transformed into symbols and animated to replicate
+            the natural movement of a butterfly. The animation supports <strong>pause and replay
+            functionality</strong>, and users can toggle sound on or off.<br /><br />
+
+            The second design demonstrates an <strong>animation within an 
+            animation</strong>. The windmill atop the paper boat follows its own independent 
+            animation cycle while the boat moves along a predefined path on the canvas. Additionally, 
+            the background consists of multiple layers that move in opposite directions, creating 
+            depth and visual contrast.<br /><br />
+
+            The third design is a <strong>character animation</strong>, showcasing 
+            <strong>rigging techniques</strong> for natural movement. I used AI tools to generate 
+            the skeleton design and then <strong>Photoshop</strong> to break it into separate moving 
+            parts. These elements were vectorized in <strong>Illustrator</strong> to ensure precision 
+            and flexibility. For <strong>character rigging</strong>, I employed <strong>layer 
+            parenting</strong>, where a parent layer influences the movement of its child layers, 
+            mimicking realistic joint behavior. 
+        </p>
+    </div>
+
+    <div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:960px; height:640px">
+        <canvas id="canvas" width="960" height="640" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:960px; height:640px; position: absolute; left: 0px; top: 0px; display: block;">
+        </div>
+    </div>
+
+    <div class="gif_containers" id="gif_container1">
+        <img src="images/animate1.gif" alt="Animated scene" width=70% />
+    </div>
+
+    <div class="gif_containers" id="gif_container2">
+        <img src="images/character.gif" alt="Animated character" width=50% />
+    </div>    
+</body>
+</html>

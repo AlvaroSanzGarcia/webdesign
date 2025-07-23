@@ -1,0 +1,53 @@
+﻿/* Author: Álvaro Sanz García */
+
+#glowing-border-container {
+  border-radius: 10px;
+  background: #1c1f2b;
+  margin: auto;
+  width: 400px;
+  color: white;
+  padding: 4%;
+  position: relative;
+}
+
+#glowing-border-container p {
+  text-align: justify;
+}
+
+#glowing-border-container h1 {
+  text-align: center;
+}
+
+#glowing-border-container h4 {
+    text-align: right;
+}
+
+#glowing-border-container::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(#ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 10px;
+  filter: blur(1.5rem);
+  animation-name: glow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+@keyframes glow {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+    <!-- Author: Álvaro Sanz García -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Photoshop - Web Graphics and Animation</title>
+
+    <link href="css/general_styles.css" rel="stylesheet" />
+    <link href="css/photoshop_styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // Button Hover Effect
+            $("button").hover(
+                function () {
+                    $(this).addClass("hovered");
+                },
+                function () {
+                    $(this).removeClass("hovered");
+                }
+            );
+
+            // Button Press Effect
+            $("button").mousedown(function () {
+                $(this).addClass("pressed");
+            });
+
+            // Ensure Buttons Reset
+            $(document).mouseup(function () {
+                $("button").removeClass("pressed");
+            });
+
+            // Slide toggle effect for the pictures
+            $("#button1").click(function () {
+                $("#layers_picture_before, #layers_picture_after").slideToggle("slow");
+            });
+
+            $("#button2").click(function () {
+                $("#family_before_picture, #family_after_picture").slideToggle("slow");
+            });
+
+            $("#button3").click(function () {
+                $("#duck_before_picture, #duck_after_picture").slideToggle("slow");
+            });
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="JQuery.html">jQuery</a></li>
+                <li><a href="Photoshop.html" id="currentPage">Photoshop</a></li>
+                <li><a href="Illustrator.html">Illustrator</a></li>
+                <li><a href="Animate.html">Animate</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="text_container">
+        <h1>Adobe Photoshop: The Ultimate Photo Editing Tool</h1>
+        <p>
+            When it comes to photo editing, few tools rival the power and versatility of
+            Adobe Photoshop. Below, you'll find a collection of my photo edits, each demonstrating
+            different techniques and tools within Photoshop. To showcase the transformation, I’ve added
+            buttons beneath each image, allowing you to toggle between the "before" and "after" versions and
+            see the magic of Photoshop in action.<br /><br />
+
+            The first photo demonstrates the use of <strong>layers</strong> and <strong>selection 
+            tools</strong> to create a composite image featuring the same person in multiple locations within 
+            the same frame. This effect requires capturing all images using a tripod to maintain a consistent 
+            background. The subject is then selected using tools like the <strong>Lasso Tool</strong> or 
+            <strong>Object Selection Tool</strong>, extracted from each image, and merged into the final
+            composition on separate layers.<br /><br />
+
+            The second design showcases advanced photo retouching and manipulation techniques. Key tools include
+            the <strong>Clone Stamp Tool</strong> for replicating missing areas, the <strong>Eyedropper 
+            Tool</strong> to sample colors, and various correction tools such as <strong>Dodge, Burn, Smudge, 
+            Blur,</strong> and <strong>Spot Healing</strong>. Additionally, filters like <strong>Gaussian
+            Blur, Camera Raw Filter,</strong> and <strong>Reduce Noise</strong> refine the final look, ensuring
+            a seamless and polished result.<br /><br />
+
+            The last image is a simple yet effective demonstration of selection 
+            tools for precise editing. In this example, a <strong>Hue/Saturation adjustment</strong> is applied 
+            selectively to specific areas, showcasing how Photoshop allows detailed control over color and 
+            effects to enhance an image’s visual impact.
+        </p>
+    </div>
+
+    <div id="layers_container">
+        <div id="layers_picture_before">
+            <img src="images/layers_original.jpeg" alt="kid-running-unedited" width="80%" />
+        </div>
+        <div id="layers_picture_after">
+            <img src="images/layers.jpg" alt="kid-running-edited" width="80%" />
+        </div>
+        <button type="button" id="button1">Click here to toggle between 'before' and 'after' pictures</button>
+    </div>
+
+
+    <div id="side_by_side_images">
+        <div class="image-container">
+            <div id="family_before_picture">
+                <img src="images/retouch1.jpeg" alt="family-unedited" style="width: 100%; height: auto;">
+            </div>
+            <div id="family_after_picture">
+                <img src="images/retouch2.jpg" alt="family-edited" style="width: 100%; height: auto;">
+            </div>
+            <button type="button" id="button2">Click here to toggle between 'before' and 'after' pictures</button>
+        </div>
+
+        <div class="image-container">
+            <div id="duck_before_picture">
+                <img src="images/selection1.jpg" alt="duck-unedited" style="width: 100%; height: auto;">
+            </div>
+            <div id="duck_after_picture">
+                <img src="images/selection2.jpg" alt="duck-edited" style="width: 100%; height: auto;">
+            </div>
+            <button type="button" id="button3">Click here to toggle between 'before' and 'after' pictures</button>
+        </div>
+    </div>
+</body>
+</html>

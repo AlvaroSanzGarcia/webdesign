@@ -1,0 +1,109 @@
+﻿/* Author: Álvaro Sanz García */
+
+#namemessage {
+  margin: 50px;
+}
+
+#namemessage {
+    padding: 5% 18%;
+}
+
+#namemessage h1 {
+    text-align: center;
+}
+
+#namemessage p {
+    text-align: justify;
+}
+
+
+#letters {
+  display: none;
+  height: 70px;
+}
+
+#slides {
+  display: flex;
+  justify-content: center;
+}
+
+
+#slides li {
+  position: relative;
+  list-style-type: none;
+  float: left;
+  padding: 20px;
+  font-style: bold;
+  font-size: 15px;
+  color: rebeccapurple;
+  background-clip: text;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  position: relative;
+  margin: 5px;
+  padding: 8px;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #04aa6d;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+/* Define button states using classes */
+button.hovered {
+    background-color: #3e8e41;
+}
+
+button.pressed {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(5px);
+}
+
+button {
+    transition: all 0.2s ease; /* Smooth transitions for hover and press effects */
+}
+
+
+#articlecontainer {
+  display: none;
+  border-radius: 10px;
+  background: #1c1f2b;
+  margin: 50px auto;
+  width: 200px;
+  color: white;
+  padding: 5%;
+  position: relative;
+}
+
+#articlecontainer h1 {
+  text-align: center;
+}
+
+#formcontainer {
+  display: none;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  color: black;
+}
+
+#articlecontainer p {
+  text-align: justify;
+}
+
+

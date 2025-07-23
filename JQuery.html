@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+    <!-- Author: Álvaro Sanz García -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>jQuery - Web Graphics and Animation</title>
+
+    <link href="css/general_styles.css" rel="stylesheet" />
+    <link href="css/jQuery_styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Button Hover Effect
+            $("button").hover(
+                function () {
+                    $(this).addClass("hovered");
+                },
+                function () {
+                    $(this).removeClass("hovered");
+                }
+            );
+
+            // Button Press Effect
+            $("button").mousedown(function () {
+                $(this).addClass("pressed");
+            });
+
+            // Ensure Buttons Reset
+            $(document).mouseup(function () {
+                $("button").removeClass("pressed");
+            });
+
+            // Restore Name Animation
+            $("#slides li").hover(
+                function () {
+                    $(this).stop(true).animate(
+                        {
+                            fontSize: "60px",
+                            fontWeight: "900",
+                            top: "-20px",
+                        },
+                        {
+                            duration: 2000,
+                            easing: "easeOutElastic",
+                        }
+                    );
+                },
+                function () {
+                    $(this).stop(true).animate(
+                        {
+                            fontSize: "15px",
+                            fontWeight: "400",
+                            top: "0px",
+                        },
+                        {
+                            duration: 2000,
+                            easing: "easeOutElastic",
+                        }
+                    );
+                }
+            );
+
+            // Other Button Functionalities
+            $("#button1").click(function () {
+                $("#namemessage, #letters").slideToggle("slow");
+            });
+
+            $("#button2").click(function () {
+                $("nav").stop(true).slideToggle("slow");
+            });
+
+            $("#button3").on("click", function () {
+                $("#articlecontainer").stop(true).slideToggle(500);
+            });
+
+            $("#button4").on("click", function () {
+                $("html").css("backgroundColor", "black");
+                $("nav ul li a").css("color", "white");
+                $("#articlecontainer").css("border", "1px solid white");
+                $("#namemessage").css("color", "white");
+                $("#slides li").css("color", "white");
+                $("body").css("margin", "0");
+                $("#currentPage").css("color", "red");
+            });
+
+            $("#button5").on("click", function () {
+                $("html").css("backgroundColor", "transparent");
+                $("nav ul li a").css("color", "black");
+                $("#articlecontainer").css("border", "1px solid white");
+                $("#namemessage").css("color", "black");
+                $("#slides li").css("color", "rebeccapurple");
+                $("#currentPage").css("color", "red");
+            });
+
+            $("#articlecontainer h1").dblclick(function () {
+                $(formcontainer).slideToggle();
+            });
+
+            $("select").change(function () {
+                var selectedOption = $(this).find(":selected").val();
+                alert("You have selected - " + selectedOption);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="JQuery.html" id="currentPage">jQuery</a></li>
+                <li><a href="Photoshop.html">Photoshop</a></li>
+                <li><a href="Illustrator.html">Illustrator</a></li>
+                <li><a href="Animate.html">Animate</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="namemessage">
+        <h1>jQuery for Dynamic Web Animation</h1>
+        <p>            
+            One of jQuery’s greatest strengths in web animation is its ability to create custom effects
+            that either lack native CSS support or would require complex workarounds to implement.
+            Additionally, jQuery includes built-in queue functionality, allowing multiple animate()
+            calls to execute sequentially. This internal queue ensures smooth transitions by automatically
+            processing each animation step in order.<br /><br />
+
+            Every example showcased on this page has been created using the <strong>animate() method</strong>, 
+            demonstrating how jQuery enhances web interactions with seamless and dynamic animations.
+</p>
+    </div>
+
+    <section id="letters">
+        <div id="slides">
+            <li>A</li>
+            <li>L</li>
+            <li>V</li>
+            <li>A</li>
+            <li>R</li>
+            <li>O</li>
+        </div>
+    </section>
+    <section id="buttons">
+        <button type="button" id="button1">Display/Hide Animated Name</button>
+        <button type="button" id="button2">Display/Hide Navigation Bar</button>
+        <button type="button" id="button3">Display/Hide Article</button>
+        <button type="button" id="button4">Dark Mode</button>
+        <button type="button" id="button5">Light Mode</button>
+    </section>
+    <div id="articlecontainer">
+        <h1>Double click here to display or hide the form</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+            velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+        <div id="formcontainer">
+            <form>
+                <p>
+                    Please select an option below for a demonstration of the use of
+                    event handlers with forms :
+                </p>
+                <label>Options:</label>
+                <select>
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                    <option>Option 4</option>
+                    <option>Option 5</option>
+                </select>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

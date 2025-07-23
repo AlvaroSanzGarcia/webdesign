@@ -1,0 +1,110 @@
+﻿/* Author: Álvaro Sanz García */
+
+
+#text_container {
+    padding: 5% 18%;
+}
+
+#text_container h1 {
+    text-align: center;
+}
+
+#text_container p {
+    text-align: justify;
+}
+
+#layers_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 80%;
+    height: auto;
+    margin: 50px auto;
+    text-align: center;
+}
+
+#layers_picture_before,
+#layers_picture_after {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+#layers_picture_before > img,
+#layers_picture_after > img {
+    max-width: 100%;
+    height: auto;
+    display: block; 
+    margin: 0 auto; 
+}
+
+#family_after_picture, #duck_after_picture, #layers_picture_after {
+    display: none;
+}
+
+#side_by_side_images {
+    display: flex; 
+    flex-wrap: nowrap; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding-left: 20px; 
+    padding-right: 20px; 
+    padding-top: 10px;
+}
+
+
+#side_by_side_images > div:first-child {
+    width: 64%; 
+    margin-right: 10px;
+    margin-bottom: 20px; 
+}
+
+
+#side_by_side_images > div:nth-child(2) {
+    width: 36%; 
+    margin-bottom: 20px; 
+}
+
+.image-container img {
+    display: block; 
+    width: 100%; 
+    height: auto; 
+}
+
+.image-container button {
+    display: block; 
+    margin-top: 5px; 
+}
+
+button {
+    position: relative;
+    margin: 5px;
+    padding: 8px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #04aa6d;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+/* Define button states using classes */
+button.hovered {
+    background-color: #3e8e41;
+}
+
+button.pressed {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(5px);
+}
+
+button {
+    transition: all 0.2s ease; /* Smooth transitions for hover and press effects */
+}

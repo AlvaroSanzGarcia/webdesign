@@ -1,0 +1,32 @@
+﻿/* Author: Álvaro Sanz García */
+
+
+#text_container {
+    padding: 5% 18%;
+}
+
+#text_container h1 {
+    text-align: center;
+}
+
+#text_container p {
+    text-align: justify;
+}
+
+#image_container1 {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#image_container1 img {
+    margin: 20px;
+}
+
+#image_container2 {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    margin: 50px;
+}
+
